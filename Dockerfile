@@ -1,15 +1,11 @@
 FROM alpine:3.11
 
 LABEL description "Rainloop is a simple, modern & fast web-based client" \
-
-ARG GPG_RAINLOOP="3B79 7ECE 694F 3B7B 70F3  11A4 ED7C 49D9 87DA 4591"
-
 ENV UID=991 GID=991 UPLOAD_MAX_SIZE=25M LOG_TO_STDOUT=false MEMORY_LIMIT=128M
 
 RUN echo "@community https://nl.alpinelinux.org/alpine/v3.11/community" >> /etc/apk/repositories \
  && apk -U upgrade \
  && apk add -t build-dependencies \
-    gnupg \
     openssl \
     wget \
  && apk add \
@@ -33,15 +29,6 @@ RUN echo "@community https://nl.alpinelinux.org/alpine/v3.11/community" >> /etc/
     php7-simplexml@community \
  && cd /tmp \
  && wget -q https://www.rainloop.net/repository/webmail/rainloop-community-latest.zip \
- && wget -q https://www.rainloop.net/repository/webmail/rainloop-community-latest.zip.asc \
- && wget -q https://www.rainloop.net/repository/RainLoop.asc \
- && echo "Verifying authenticity of rainloop-community-latest.zip using GPG..." \
- && gpg --import RainLoop.asc \
- && FINGERPRINT="$(LANG=C gpg --verify rainloop-community-latest.zip.asc rainloop-community-latest.zip 2>&1 \
-  | sed -n "s#Primary key fingerprint: \(.*\)#\1#p")" \
- && if [ -z "${FINGERPRINT}" ]; then echo "Warning! Invalid GPG signature!" && exit 1; fi \
- && if [ "${FINGERPRINT}" != "${GPG_RAINLOOP}" ]; then echo "Warning! Wrong GPG fingerprint!" && exit 1; fi \
- && echo "All seems good, now unzipping rainloop-community-latest.zip..." \
  && mkdir /rainloop && unzip -q /tmp/rainloop-community-latest.zip -d /rainloop \
  && find /rainloop -type d -exec chmod 755 {} \; \
  && find /rainloop -type f -exec chmod 644 {} \; \
