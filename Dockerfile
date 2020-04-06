@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 LABEL description "Rainloop is a simple, modern & fast web-based client" \
       maintainer="Hardware <contact@meshup.net>"
