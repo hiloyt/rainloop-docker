@@ -1,8 +1,8 @@
-# hardware/rainloop
+# hiloyt/rainloop
 
 ![](https://i.goopics.net/nI.png)
 
-### What is this ?
+### What is this?
 
 Rainloop is a simple, modern & fast web-based client. More details on the [official website](http://www.rainloop.net/).
 
@@ -48,6 +48,6 @@ rainloop:
     - mailserver
 ```
 
-#### How to setup
+#### Original author
 
-https://github.com/hardware/mailserver/wiki/Rainloop-initial-configuration
+https://github.com/hardware/rainloop
