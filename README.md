@@ -40,7 +40,7 @@ Rainloop is a simple, modern & fast web-based client. More details on the [offic
 # https://github.com/hardware/mailserver/blob/master/docker-compose.sample.yml
 
 rainloop:
-  image: hardware/rainloop
+  image: hiloyt/rainloop
   container_name: rainloop
   volumes:
     - /mnt/docker/rainloop:/rainloop/data
